@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "preora"
+version = "0.1.0"
+description = ""
+authors = ["Debarchito Nath <dev.debarchito.nath@protonmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.13"
+rerun-sdk = "^0.14.1"
+numpy = "^1.26.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
