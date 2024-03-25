@@ -46,6 +46,32 @@ Existing traffic management systems, heavily reliant on pre-programmed traffic l
 
 - *Limitations in Adverse Weather*: Pre-programmed traffic management systems struggle to adapt to real-time weather changes. Their inability to dynamically adjust signal timings and lane configurations during events like heavy rain hinders the implementation of safety measures. This inflexibility can compromise both safety and efficiency by preventing adjustments like extended pedestrian crossing phases or reduced speed limits in hazardous conditions, etc.
 
+
+== Consequences
+
+All the above mentioned issues leads to a phelthora of unsolicited consequences. As a result, this not just affects the individuals but also the nation and most importantly the environmet in various ways, which includes but not just limited to:
+
+
+=== 1.2.1 National Issues
+
+- *Workforce Inefficiency*: consequences, i.e. affects of vehicles waiting in traffic lights due to poor regulation to the country, environment and the individual.
+
+- *Lower Economic Growth*:  Inefficiencies in transportation caused by poorly timed traffic lights can hinder economic growth. Businesses may struggle to get goods and services delivered on time, and overall commerce can be disrupted.
+
+=== 1.2.2 Environmental Issues
+
+- *Higher Carbon Emissions*: The longer vehicles wait at traffic lights, the more fuel they burn. This contributes to higher carbon emissions and worsens climate change.
+
+- *Wasted Fuel Resources*: Inefficient traffic light timing leads to unnecessary fuel consumption, which is a waste of a valuable resource.
+
+- *Increased Air Pollution*: Idling vehicles waiting at red lights for extended periods contribute to air pollution. This can have negative health impacts for people living in congested areas, and also to the whole environment overall.
+
+=== 1.2.3 Individual Problem
+
+- *Wasted Time Commuting*: Excessive waiting at traffic lights translates to longer commutes for individuals. This takes away from personal time and reduces overall quality of life.
+
+- *Higher Risk of Accidents*: Impatient drivers stuck in traffic jams may engage in risky behavior to get ahead, such as speeding or running red lights. This increases the risk of accidents.
+
 #figure(
   image("images/causes_of_accidents.webp"),
   caption: [
