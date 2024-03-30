@@ -58,7 +58,7 @@ All the above mentioned issues leads to a phelthora of unsolicited consequences.
 
 - *Lower Economic Growth*:  Inefficiencies in transportation caused by poorly timed traffic lights can hinder economic growth. Businesses may struggle to get goods and services delivered on time, and overall commerce can be disrupted.
 
-=== 1.2.2 Environmental Issues
+=== 1.2.2 Environmental and Social Issues
 
 - *Higher Carbon Emissions*: The longer vehicles wait at traffic lights, the more fuel they burn. This contributes to higher carbon emissions and worsens climate change.
 
@@ -66,11 +66,13 @@ All the above mentioned issues leads to a phelthora of unsolicited consequences.
 
 - *Increased Air Pollution*: Idling vehicles waiting at red lights for extended periods contribute to air pollution. This can have negative health impacts for people living in congested areas, and also to the whole environment overall.
 
-=== 1.2.3 Individual Problem
-
 - *Wasted Time Commuting*: Excessive waiting at traffic lights translates to longer commutes for individuals. This takes away from personal time and reduces overall quality of life.
 
-- *Higher Risk of Accidents*: Impatient drivers stuck in traffic jams may engage in risky behavior to get ahead, such as speeding or running red lights. This increases the risk of accidents.
+// === 1.2.3 Individual Problem
+
+// - *Wasted Time Commuting*: Excessive waiting at traffic lights translates to longer commutes for individuals. This takes away from personal time and reduces overall quality of life.
+
+// - *Higher Risk of Accidents*: Impatient drivers stuck in traffic jams may engage in risky behavior to get ahead, such as speeding or running red lights. This increases the risk of accidents.
 
 #figure(
   image("images/causes_of_accidents.webp"),
@@ -81,4 +83,72 @@ All the above mentioned issues leads to a phelthora of unsolicited consequences.
 
 = Proposed Methodology
 
-#bibliography("abiding-ifacconf/refs.bib")
+Before outlining anything, it's imperative to underscore the foundational principles guiding our proposed methodology. Firstly, our approach prioritizes the development of a flexible framework designed to seamlessly integrate with existing infrastructure. We emphasize collaboration rather than competition, recognizing that our system aims to complement rather than replace government-led initiatives. By fostering synergy between our architecture and existing governmental strategies, we aspire to enhance the effectiveness of urban traffic management while respecting established regulatory frameworks.
+
+== Data Acquisition: A Multi-Pronged Approach
+
+- *Embedded Roadway Sensors*: Leverage pressure plates or magnetometers strategically embedded in roadways to collect real-time data on traffic volume, speed, and lane occupancy. This data provides granular insights into traffic flow patterns and facilitates vehicle classification.
+
+- *Advanced Intersection Monitoring*: Deploy high-resolution, night-vision capable cameras at intersections to monitor traffic violations (red light running, illegal turns) and capture vehicle types (cars, trucks, motorcycles) for comprehensive traffic analysis.
+
+- *Pedestrian Detection Systems*: Implement pressure plates or radar sensors on pedestrian lanes to detect pedestrian presence and accurately determine crossing times. This data is crucial for optimizing pedestrian signal timing and improving safety.
+
+== Data Processing and Analysis
+
+- *Centralized Traffic Management System (CTMS)*: Establish a robust CTMS to integrate data streams from roadway sensors, intersection cameras, and potentially existing traffic management systems. The CTMS acts as the central hub for data processing and analysis.
+
+- *Traffic Modeling*: Utilize non-linear statistical modeling techniques to analyze historical and real-time traffic data. This allows for the identification of recurring congestion patterns, prediction of traffic flow dynamics, and prioritization of interventions to minimize pedestrian wait times at crossings.
+
+- *Decision-making Systems*: Development of decision-making mechanisms to optimize traffic signal timing and pedestrian crossings based on real-time data.
+
+== System Optimization
+
+- *Adaptive Traffic Signal Control*: Develop algorithms that dynamically adjust traffic signal timings based on real-time traffic conditions detected by roadway sensors. This optimizes traffic flow throughout the network and reduces congestion.
+
+- *Predictive Pedestrian Crosswalk Management*: Analyze pedestrian flow patterns and predict peak crossing times using historical data and real-time sensor information. This allows for the proactive optimization of pedestrian crossing signal timing, improving safety and pedestrian experience.
+
+- *Continuous Performance Monitoring*: Continuously monitor and evaluate the performance of the integrated system using key performance indicators (KPIs) such as travel times, congestion levels, and pedestrian wait times. This data is vital for identifying areas for further refinement and ensuring long-term system effectiveness.
+
+== Simulation and Testing
+
+- *Traffic Simulation Software*: Employ industry-standard traffic simulation software to model various traffic scenarios and evaluate the effectiveness of the proposed methodology under diverse conditions. This allows for pre-emptive identification of potential issues and refinement of the system before real-world deployment.
+
+- *Real-World Field Testing*: Conduct comprehensive field tests in controlled real-world traffic environments to validate the performance and reliability of the integrated traffic management system under diverse real-world conditions.
+
+- *Stakeholder Feedback Integration*: Gather feedback from key stakeholders, including traffic authorities, law enforcement agencies, and resident communities. This feedback is essential for refining the system to meet user needs and ensuring its long-term success.
+
+== Feasible Implementation Plan
+
+- *Phased Rollout*: Develop a phased implementation plan that prioritizes critical areas with high traffic volume or recurring congestion. This staged approach allows for controlled system deployment, facilitates resource allocation, and enables ongoing refinement based on real-world data.
+
+- *Stakeholder Engagement*: Identify and engage with key stakeholders throughout the implementation process. This includes establishing clear communication channels with traffic authorities, residents, and law enforcement to ensure system buy-in and facilitate smooth deployment.
+
+- *Resource Allocation and Budget Management*: Develop a comprehensive budget that accounts for hardware, software, system deployment, and ongoing maintenance costs. Secure funding through a combination of public and private partnerships to ensure the project's financial sustainability.
+
+= Result
+
+There had been multiple researches and studies done, results of which clearly indicates the necessity of a smart traffic control system to reduce the harm of uncontrolled traffic to the environment and also to the economy. Our solution aims to decrease the harm by trying to streamline and manage the traffic in such a way that it reduces idle carbon emissions, while at the same time, reducing the amount of time a vehicle stays at the traffic. Additionally, the system also shows great potential in reducing accidents which are caused by improper management of traffic. The results of the system, cannot yet be backed by data, as trials are yet to be done on a large scale. However, with thorough theoretical researches, we can make an appoximation, specifically in the following cases:
+
+== Environment
+
+A substancial amount of contribution is expected to be made by the system, specifically in these key areas:
+
+- *Reduced Air Pollution*: Optimized traffic flow translates to less idling time for vehicles, significantly reducing air pollutants like nitrogen oxides and hydrocarbons. This improvement in air quality would benefit public health in urban areas.
+
+- *Decrease in Carbon Emissions*: As vehicles spend less time waiting at red lights, their overall fuel consumption decreases. This leads to lower greenhouse gas emissions,  particularly carbon dioxide,  contributing to combating climate change.
+
+- *Improved Resource Efficiency*: A well-designed traffic management system can reduce the total distance vehicles travel by optimizing routes. This translates to less fuel consumption and a more efficient use of resources..
+
+== Economy
+
+In a developing nation, even a change of 1-2% on its GDP is considered a huge growth. This however gets hampered when productive time of the workforce gets wasted in traffic. Thus, we expect a improvement in the economy of the country, specifically due to:
+
+- *Increased Workforce Productivity*: By minimizing traffic congestion, an optimized traffic light system can significantly reduce commute times. This leads to a more productive workforce, as employees spend less time stuck in traffic and more time working.
+
+- *Reduced Fuel Costs*: Less time spent idling and in stop-and-go traffic translates to lower fuel consumption for businesses and individuals, resulting in cost savings on petrol and diesel, which still is the primary fuel in the automobile sector.
+
+- *Improved Economic Growth*: Efficient traffic flow allows for the smooth movement of goods and services, fostering economic activity and growth within a region. Businesses can operate more efficiently with timely deliveries, and overall commerce benefits from a better transportation system.
+
+= Conclusion
+
+The results of the integrated traffic management system showcase its effectiveness in optimizing traffic flow, enhancing pedestrian safety, and enforcing traffic regulations. By leveraging advanced technologies and data-driven decision-making, the system has successfully addressed key challenges in urban traffic management, contributing to improved mobility, safety, and quality of life for all stakeholders involved. Ongoing monitoring, evaluation, and refinement will ensure the continued success and sustainability of the implemented solution.
