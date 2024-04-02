@@ -21,10 +21,10 @@ class Road:
         """
         Creates a `Road` object from a `Polars DataFrame`.
         """
-        road = Road(
+
+        return Road(
             tag=df["tag"], avi=df["avi"], vcd=df["vcd"], is_directed=df["is_directed"]
         )
-        return road
 
 
 class Intersection:
