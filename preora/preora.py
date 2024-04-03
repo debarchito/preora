@@ -39,12 +39,6 @@ class Road:
             is_directed=self.details["is_directed"],
         )
 
-    @staticmethod
-    def from_df(*, df: pl.DataFrame):
-        return Road(
-            tag=df["tag"], avi=df["avi"], vcd=df["vcd"], is_directed=df["is_directed"]
-        )
-
 
 class Intersection:
     def __init__(self, *, tag: str):
