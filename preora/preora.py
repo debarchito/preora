@@ -70,7 +70,7 @@ class Intersection:
     def addRoad(self, road: Road, dir: Position | GenericPosition | None = None):
         road.details["position"] = dir.value if dir else 0
         self.roads = pl.concat([self.roads, pl.DataFrame(road.details)]).unique(
-            subset=["tag"],
+            subset=["tag"], keep="last"
         )
 
     def addRoads(self, roads: tuple[tuple[Road, Position | GenericPosition | None]]):

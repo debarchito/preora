@@ -1,23 +1,30 @@
-from preora import Intersection, Road, Position, GenericPosition
+from preora import Intersection, Road, Position
 from nanoid import generate
 
 
 def test(capsys):
     intr = Intersection(tag=generate(size=5))
 
-    road_one = Road(tag=generate(size=5), avi=1, vcd=1200)
-    road_two = road_one.copy_with_new_tag(tag=generate(size=5))
-    road_three = road_two.copy_with_new_tag(tag=generate(size=5))
-    road_four = Road(tag=generate(size=5), avi=2, vcd=50, is_directed=True)
-
     intr.addRoads(
-        [
-            (road_one, Position.NORTH),
-            (road_two, GenericPosition(272)),
-            (road_three, None),
-            (road_four, Position.SOUTH),
-            (road_four, Position.WEST),
-        ]
+        (
+            (
+                Road(tag=generate(size=5), avi=1, vcd=800, is_directed=True),
+                Position.INCOMING_WEST,
+            ),
+            (
+                Road(tag=generate(size=5), avi=1, vcd=800, is_directed=True),
+                Position.OUTGOING_WEST,
+            ),
+            (
+                Road(tag=generate(size=5), avi=1, vcd=700, is_directed=True),
+                Position.OUTGOING_EAST,
+            ),
+            (
+                Road(tag=generate(size=5), avi=1, vcd=700, is_directed=True),
+                Position.INCOMING_EAST,
+            ),
+            (Road(tag=generate(size=5), avi=2, vcd=50), Position.INCOMING_NORTH),
+        )
     )
 
     with capsys.disabled():
