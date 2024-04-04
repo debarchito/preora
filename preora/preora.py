@@ -32,10 +32,10 @@ class GenericPosition:
 
 
 class Road:
-    def __init__(self, *, tag: str, avi: int, vcd: int, is_directed=False):
+    def __init__(self, tag: str, avi: int, vcd: int, is_directed=False):
         self.details = {"tag": tag, "avi": avi, "vcd": vcd, "is_directed": is_directed}
 
-    def copy_with_new_tag(self, *, tag: str):
+    def copy_with_new_tag(self, tag: str):
         return Road(
             tag=tag,
             avi=self.details["avi"],
@@ -44,8 +44,21 @@ class Road:
         )
 
 
+class Crossing:
+    def __init__(self, tag: str, from_: str, to: str, pcd: int):
+        self.details = {"tag": tag, "from": from_, "to": to, "pcd": pcd}
+
+
+class Entity:
+    def __init__(self, tag: str, avi: int):
+        self.details = {"tag": tag, "avi": avi}
+
+    def copy_with_new_tag(self, tag: str):
+        return Entity(tag=tag, avi=self.details["avi"])
+
+
 class Intersection:
-    def __init__(self, *, tag: str):
+    def __init__(self, tag: str):
         self.tag = tag
         self.roads = pl.DataFrame(
             schema={
@@ -77,52 +90,74 @@ class Intersection:
             subset=["tag"], keep="last"
         )
 
+    def addCrossing(self, crossing: Crossing):
+        self.crossings = pl.concat(
+            [self.crossings, pl.DataFrame(crossing.details)]
+        ).unique(subset=["tag"], keep="last")
+
+    def addEntity(self, entity: Entity):
+        self.entities = pl.concat([self.entities, pl.DataFrame(entity.details)]).unique(
+            subset=["tag"], keep="last"
+        )
+
     def addRoads(self, roads: tuple[tuple[Road, Position | GenericPosition | None]]):
         for road, dir in roads:
             self.addRoad(road, dir)
 
-    def plot(self):
-        G = nx.DiGraph()
-        G.add_node("Intersection")
+    def addCrossings(self, crossings: tuple[Crossing]):
+        for crossing in crossings:
+            self.addCrossing(crossing)
 
-        for i, row in self.roads.to_pandas().iterrows():
+    def addEntities(self, entities: tuple[Entity]):
+        for entity in entities:
+            self.addEntity(entity)
+
+    def visualize_model(self):
+        G = nx.DiGraph()
+        G.add_node(self.tag)
+
+        for _, row in self.roads.to_pandas().iterrows():
             if row["position"] < np.pi * 2:
                 if row["is_directed"]:
                     G.add_edge(
                         row["tag"],
-                        "Intersection",
+                        self.tag,
                         position=row["position"],
                         arrowstyle="->",
+                        linestyle="solid",
                     )
                 else:
                     G.add_edge(
                         row["tag"],
-                        "Intersection",
+                        self.tag,
                         position=row["position"],
                         arrowstyle="-",
+                        linestyle="-.",
                     )
             else:
                 if row["is_directed"]:
                     G.add_edge(
-                        "Intersection",
+                        self.tag,
                         row["tag"],
                         position=row["position"],
                         arrowstyle="->",
+                        linestyle="solid",
                     )
                 else:
                     G.add_edge(
-                        "Intersection",
+                        self.tag,
                         row["tag"],
                         position=row["position"],
                         arrowstyle="-",
+                        linestyle="-.",
                     )
 
         fixed_positions = {
-            "Intersection": (0, 0),
+            self.tag: (0, 0),
         }
 
         for i, row in self.roads.to_pandas().iterrows():
-            if row["tag"] != "Intersection":
+            if row["tag"] != self.tag:
                 fixed_positions[row["tag"]] = (
                     np.sin(row["position"] + 0.1),
                     np.cos(row["position"] + 0.1),
@@ -134,7 +169,13 @@ class Intersection:
         fig, ax = plt.subplots()
 
         nx.draw_networkx_nodes(
-            G, pos, nodelist=fixed_nodes, node_size=700, node_color="r", ax=ax
+            G,
+            pos,
+            nodelist=fixed_nodes,
+            node_size=700,
+            node_color="#dad8e8",
+            node_shape="h",
+            ax=ax,
         )
 
         edges = G.edges(data=True)
@@ -142,23 +183,26 @@ class Intersection:
         for u, v, data in edges:
             position = data["position"]
             if position < np.pi * 2:
-                edge_color = "b"
+                edge_color = "#6787bc"
             else:
-                edge_color = "r" if data["arrowstyle"] == "->" else "g"
+                edge_color = "#e29b72" if data["arrowstyle"] == "->" else "#95c9a1"
             edge_collection = nx.draw_networkx_edges(
                 G,
                 pos,
                 edgelist=[(u, v)],
                 edge_color=edge_color,
+                style=data["linestyle"],
                 arrows=False,
-                width=2,
+                width=3,
                 ax=ax,
             )
             edge_arrows[edge_collection] = (u, v)
 
         nx.draw_networkx_labels(G, pos, ax=ax)
 
-        circle = plt.Circle((0, 0), radius=1, color="b", fill=False, linestyle="dotted")
+        circle = plt.Circle(
+            (0, 0), radius=1, color="#8172b3", fill=False, linestyle="dotted"
+        )
         ax.add_patch(circle)
 
         def update(frame):
@@ -170,6 +214,25 @@ class Intersection:
                     dy = (y1 - y0) * (frame / 100)
                     new_positions = np.array([[x0 + dx, y0 + dy], [x0, y0]])
                     edge_collection.set_segments([new_positions])
+
+        road_tags = self.roads["tag"].to_numpy()
+        road_avis = self.roads["avi"].to_numpy()
+        road_vcd = self.roads["vcd"].to_numpy()
+
+        legend_labels = [
+            f"{tag} (AVI: {avi}, VCD: {vcd})"
+            for tag, avi, vcd in zip(road_tags, road_avis, road_vcd)
+        ]
+        plt.legend(
+            legend_labels,
+            loc="upper right",
+            title="Roads",
+            fontsize="medium",
+            frameon=True,
+            handlelength=0,
+            handleheight=0,
+        )
+        # plt.setp(legend.get_title(), fontsize="medium")
 
         _ = FuncAnimation(fig, update, frames=np.arange(0, 101), interval=0)
         plt.title("Road Connections")
